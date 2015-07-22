@@ -97,7 +97,6 @@ def main_menu(select=False,choose=''):
 											#logowindow.start(channels,"False",channel_labels[choose])
 											logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
 									else:
-										#logowindow.start(channels,"False",channel_labels[choose])
 										logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
 								else:
 									mensagemok('TVLogo Downloader','No channels match on thelogodb!')
@@ -133,7 +132,7 @@ def specific_channels():
 				if choose > -1:
 					channels = thelogodb.Channels().by_country(country_list[choose])
 					if channels:
-						logowindow.start(channels,"True")
+						logowindow.start(channels,"True","True")
 					else:
 						mensagemok('TVLogo Downloader','No channels with logos in thelogodb!')
 						specific_channels()
@@ -172,7 +171,6 @@ def specific_channels():
 									for channel in channels:
 										if channel["strLogoWide"]: channels_have_logos = True
 									if channels and channels_have_logos:
-										#logowindow.start(channels,"True")
 										logowindow.start(channels,"True","True")
 									else:
 										mensagemok('TVLogo Downloader','No logos available for this package!')
@@ -203,7 +201,6 @@ def specific_channels():
 					if choose > -1:
 						channels = thelogodb.Channels().by_package(package_id_list[choose])
 						if channels:
-							#logowindow.start(channels,"True")
 							logowindow.start(channels,"True","True")
 						else:
 							mensagemok('TVLogo Downloader','No logos available for this package!')
@@ -222,7 +219,7 @@ def specific_channels():
 				if search_parameter:
 					channels = thelogodb.Channels().by_keyword(search_parameter)
 					if channels:
-						logowindow.start(channels,"True")
+						logowindow.start(channels,"True","True")
 					else:
 						mensagemok('TVLogo Downloader','No packages available!')
 						specific_channels()
