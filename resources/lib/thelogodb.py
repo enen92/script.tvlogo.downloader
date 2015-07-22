@@ -29,7 +29,6 @@ class Channels:
 		
 	def by_country(self,country):
 		url = '%s/%s/tvchannel.php?c=%s' % (API_BASE_URL,self.API_KEY,str(country))
-		print url
 		data = json.load(urllib2.urlopen(url))
 		return data["channels"]
 		
