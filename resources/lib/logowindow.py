@@ -141,3 +141,7 @@ class dialog_channels(xbmcgui.WindowXMLDialog):
 								const.Constr().add_to_array(logo)
 				else:
 					mensagemok('TVLogo Downloader',"You haven't selected any channels")
+		
+		elif controlId == 99:
+			self.close()
+		return

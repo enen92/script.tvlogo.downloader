@@ -90,7 +90,7 @@ class Downloader:
 			total = float(filesize) / (1024 * 1024) 
 			mbs = '%.02f MB %s %.02f MB' % (currently_downloaded,'downloaded', total) 
 			e = ' (%.0f Kb/s) ' % kbps_speed 
-			tempo = 'Tempo:' + ' %02d:%02d' % divmod(eta, 60) 
+			tempo = 'Time left:' + ' %02d:%02d' % divmod(eta, 60) 
 			dp.update(percent,name +' - '+ mbs + e,tempo)
 		except: 
 			percent = 100 

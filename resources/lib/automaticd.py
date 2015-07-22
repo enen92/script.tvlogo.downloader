@@ -125,7 +125,14 @@ def automatic_downloader(mode):
 						
 						if not already:
 							xbmc.sleep(3000)
+							before = const.Constr().return_array()
 							logowindow.start(match,"False","False",selected_channel=channel)
+							now = const.Constr().return_array()
+							if before == now:
+								if channel not in failed_log:
+									failed_log.append(channel)
+							del before
+							del now
 				else:
 					if channel not in failed_log:
 						failed_log.append(channel)
