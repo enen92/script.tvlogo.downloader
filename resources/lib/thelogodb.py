@@ -14,7 +14,7 @@
 
 import json,urllib,urllib2
 
-API_BASE_URL = 'http://www.thelogodb.com/api/json/v1/'
+API_BASE_URL = 'http://www.thelogodb.com/api/json/v1'
 API_KEY = '7361'
 
 class Channels:

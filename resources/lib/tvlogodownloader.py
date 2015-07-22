@@ -23,7 +23,7 @@ import automaticd
 
 def main_menu(select=False,choose=''):
 	print "[Tvlogo Downloader] Main menu"
-	options = ["Automatic (All user channels)","Automatic (only user channels without logos) #TODO","Manual (Specific user channels)","Entire Packages (database)","Specific channels (database)"]
+	options = ["Automatic (All user channels)","Automatic (only user channels without logos)","Manual (Specific user channels)","Entire Packages (database)","Specific channels (database)"]
 	optionsvar = ["autoall","automissing","manual","package","channel"]
 	if not select: choose = xbmcgui.Dialog().select('TVLogo Downloader',options)
 	

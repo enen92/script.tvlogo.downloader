@@ -73,8 +73,12 @@ def automatic_downloader(mode):
 							ch_ids.append(channel["channelid"])
 							ch_names.append(channel["label"])
 					else:
-						#TODO
-						pass
+						json_response = xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.GetSettingValue","params":{"setting":"pvrmenu.iconpath"},"id":9}')
+						decoded_data = json.loads(json_response)
+						logo_folder = decoded_data['result']['value']
+						if channel["label"] not in ch_names and channel['thumbnail'].replace('image://','') != logo_folder.replace('/','%20'): 
+							ch_ids.append(channel["channelid"])
+							ch_names.append(channel["label"])
 	if ch_names:
 		download_list = []
 		initconst = const.Constr().restart_process()
