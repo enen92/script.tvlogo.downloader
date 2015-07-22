@@ -76,7 +76,7 @@ def automatic_downloader(mode):
 						json_response = xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.GetSettingValue","params":{"setting":"pvrmenu.iconpath"},"id":9}')
 						decoded_data = json.loads(json_response)
 						logo_folder = decoded_data['result']['value']
-						if channel["label"] not in ch_names and channel['thumbnail'].replace('image://','') != logo_folder.replace('/','%20'): 
+						if channel["label"] not in ch_names and channel['thumbnail'].replace('image://','') != os.path.join(logo_folder,channel["label"].replace(' ','%20')+'.png').replace('/','%2f') + '/': 
 							ch_ids.append(channel["channelid"])
 							ch_names.append(channel["label"])
 	if ch_names:
@@ -97,7 +97,8 @@ def automatic_downloader(mode):
 					match = match2
 					del match2
 				else:
-					failed_log.append(channel)
+					if channel not in failed_log:
+						failed_log.append(channel)
 				if match:
 					if len(match) == 1:
 						obj = {'channel_name': match[0]["strChannel"],'channel_logo': match[0]["strLogoWide"],'selected_channel':channel}
@@ -126,7 +127,8 @@ def automatic_downloader(mode):
 							xbmc.sleep(3000)
 							logowindow.start(match,"False","False",selected_channel=channel)
 				else:
-					failed_log.append(channel)
+					if channel not in failed_log:
+						failed_log.append(channel)
 				i +=1
 			else:
 				iscanceled = True
