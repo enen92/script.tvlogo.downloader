@@ -101,15 +101,14 @@ def main_menu(select=False,choose=''):
 										logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
 								else:
 									mensagemok('TVLogo Downloader','No channels match on thelogodb!')
-									main_menu(select=True,choose=1)
 							else:
-								main_menu(select=True,choose=1)
+								main_menu()
 						else:
 							mensagemok('TVLogo Downloader','No channels available!')
-							main_menu(select=True,choose=1)
+							main_menu(select=True,choose=2)
 					else:
 						mensagemok('TVLogo Downloader',"Group doesn't have any channels.")
-						main_menu(select=True,choose=1)
+						main_menu(select=True,choose=2)
 				else:
 					main_menu()
 
