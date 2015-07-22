@@ -47,7 +47,7 @@ def main_menu(select=False,choose=''):
 					json_response = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "PVR.GetChannels", "params": {"channelgroupid" : '+str(groups[x]["channelgroupid"])+',"properties":["channel","channeltype","thumbnail"]}, "id": 1 }')
 					channel_number = bool("channels" in json.loads(json_response)["result"])
 					if channel_number: has_channels = True
-				#
+
 				if has_channels:
 					groupids.append(groups[x]["channelgroupid"])
 					grouplabels.append('TV: ' + groups[x]["label"])
@@ -62,7 +62,7 @@ def main_menu(select=False,choose=''):
 					json_response = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "PVR.GetChannels", "params": {"channelgroupid" : '+str(groups[x]["channelgroupid"])+',"properties":["channel","channeltype","thumbnail"]}, "id": 1 }')
 					channel_number = bool("channels" in json.loads(json_response)["result"])
 					if channel_number: has_channels = True
-				#
+
 				if has_channels:
 					groupids.append(groups[x]["channelgroupid"])
 					grouplabels.append('Radio: ' + groups[x]["label"])
@@ -95,12 +95,10 @@ def main_menu(select=False,choose=''):
 											downloader.Downloader(logos_to_download,True)
 											postprocessing.run()
 										else:
-											#logowindow.start(channels,"False",channel_labels[choose])
 											logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
 									else:
 										logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
 										postprocessing.run()
-										#main_menu()
 								else:
 									mensagemok('TVLogo Downloader','No channels match on thelogodb!')
 							else:
