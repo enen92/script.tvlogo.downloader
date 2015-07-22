@@ -20,6 +20,7 @@ import json
 import logowindow
 import downloader
 import automaticd
+import postprocessing
 
 def main_menu(select=False,choose=''):
 	print "[Tvlogo Downloader] Main menu"
@@ -92,12 +93,14 @@ def main_menu(select=False,choose=''):
 											#TODO check for setting white or black logo or allow selection
 											logos_to_download = [channel_to_downloaddict(channels[0],channel_labels[choose])]
 											downloader.Downloader(logos_to_download,True)
-											#TODO post process
+											postprocessing.run()
 										else:
 											#logowindow.start(channels,"False",channel_labels[choose])
 											logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
 									else:
 										logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
+										postprocessing.run()
+										#main_menu()
 								else:
 									mensagemok('TVLogo Downloader','No channels match on thelogodb!')
 							else:

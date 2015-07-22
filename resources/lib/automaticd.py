@@ -21,6 +21,7 @@ import const
 import difflib
 import downloader
 import tvlogodownloader
+import postprocessing
 from addoncommon.common_variables import *
 
 def automatic_downloader(mode):
@@ -145,6 +146,6 @@ def automatic_downloader(mode):
 			dp.close()
 			logos_to_download = const.Constr().return_array()
 			downloader.Downloader(logos_to_download,True,failed_log)
+			postprocessing.run()
 			tvlogodownloader.main_menu(select=False,choose='')
-			#TODO post processing
 			

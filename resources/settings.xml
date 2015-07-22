@@ -7,5 +7,6 @@
 		<setting id="auto_if_100" type="bool" label="Download automatically if name matches 100%" default="true"/>
 		<setting id="auto_if_multiple" type="bool" label="Download automatically the logo with the best match" default="false"/>
 		<setting id="minimum_ratio" label="Mininum ratio to consider a logo for download" type="slider" default="95" range="50,100" option="int" visible="eq(-1,true)"/>
+		<setting id="display_warning" type="bool" label="display warning hidden setting" default="true" visible="False"/>
 	</category>
 </settings>
