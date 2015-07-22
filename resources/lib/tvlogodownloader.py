@@ -130,9 +130,10 @@ def specific_channels():
 					if country["strCountry"] and country != 'None': country_list.append(country["strCountry"])
 				choose = xbmcgui.Dialog().select('TVLogo Downloader',country_list)
 				if choose > -1:
-					channels = thelogodb.Channels().by_country(country_list[choose])
+					channels = thelogodb.Channels().by_country(urllib.quote(country_list[choose]))
 					if channels:
 						logowindow.start(channels,"True","True")
+						specific_channels()
 					else:
 						mensagemok('TVLogo Downloader','No channels with logos in thelogodb!')
 						specific_channels()
@@ -172,6 +173,7 @@ def specific_channels():
 										if channel["strLogoWide"]: channels_have_logos = True
 									if channels and channels_have_logos:
 										logowindow.start(channels,"True","True")
+										specific_channels()
 									else:
 										mensagemok('TVLogo Downloader','No logos available for this package!')
 										specific_channels()
@@ -202,6 +204,7 @@ def specific_channels():
 						channels = thelogodb.Channels().by_package(package_id_list[choose])
 						if channels:
 							logowindow.start(channels,"True","True")
+							specific_channels()
 						else:
 							mensagemok('TVLogo Downloader','No logos available for this package!')
 							specific_channels()
@@ -259,7 +262,7 @@ def entire_packages():
 			optionsvar = ["Europe","America","Africa","Asia","Oceania"]
 			choose = xbmcgui.Dialog().select('TVLogo Downloader',options)
 			if choose > -1:
-				packages = thelogodb.Packages().by_country(optionsvar[choose])
+				packages = thelogodb.Packages().by_country(urllib.quote_plus(optionsvar[choose]))
 				package_list = []
 				package_id_list = []
 				if packages:
