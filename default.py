@@ -12,8 +12,6 @@
 # You should have received a copy of the GNU General Public License along with this program; 
 # if not, see <http://www.gnu.org/licenses/>.
 
-
-
 import xbmcplugin
 import xbmcgui
 import xbmc 
@@ -22,68 +20,26 @@ import os
 import sys
 from resources.lib.addoncommon.common_variables import *
 from resources.lib import tvlogodownloader
-
-
+from resources.lib import context
 
 def get_params():
-	try:
-		param=[]
-		paramstring=sys.argv[2]
-		if len(paramstring)>=2:
-			params=sys.argv[2]
-			cleanedparams=params.replace('?','')
-			if (params[len(params)-1]=='/'):
-				params=params[0:len(params)-2]
-			pairsofparams=cleanedparams.split('&')
-			param={}
-			for i in range(len(pairsofparams)):
-				splitparams={}
-				splitparams=pairsofparams[i].split('=')
-				if (len(splitparams))==2:
-					param[splitparams[0]]=splitparams[1]
-	except: pass                     
-	return param
+	param=[]
+	try: paramstring=sys.argv[1]
+	except: paramstring = ''
+	if len(paramstring)>=2:
+		params=sys.argv[1]
+		if (params[len(params)-1]=='/'):
+			params=params[0:len(params)-2]
+		pairsofparams=params.split('/')
+		for parm in pairsofparams:
+			if parm == '':
+				pairsofparams.remove(parm)      
+	return pairsofparams
 
-      
-params=get_params()
-url=None
-name=None
-mode=None
-iconimage=None
-regexs=None
+try: params=get_params()
+except: params = []
 
-
-try:
-        url=urllib.unquote_plus(params["url"])
-except:
-        pass
-try:
-        name=urllib.unquote_plus(params["name"])
-except:
-        pass
-try:
-        mode=int(params["mode"])
-except:
-        pass
-
-try:        
-        iconimage=urllib.unquote_plus(params["iconimage"])
-except:
-        pass
-
-try:
-    regexs=params["regexs"]
-except:
-    pass
-
-
-print "Mode: "+str(mode)
-print "URL: "+str(url)
-print "Name: "+str(name)
-print "Iconimage: "+str(iconimage)
-
-
-if mode==None or url==None or len(url)<1:
+if not params:
 	if settings.getSetting('logo-folder') == "":
 		mensagemok('TVLogo Downloader','Please configure the download folder!')
 		xbmc.executebuiltin('XBMC.Addon.OpenSettings('+addon_id+')')
@@ -92,10 +48,9 @@ if mode==None or url==None or len(url)<1:
 	else:
 		tvlogodownloader.main_menu()
 
-elif mode==1:
-	calendar()
-	
-	
-try:		
-	xbmcplugin.endOfDirectory(int(sys.argv[1]))
+else:
+	if params[0] == 'context':
+		context.run(params[1])
+
+try: xbmcplugin.endOfDirectory(int(sys.argv[1]))
 except: sys.exit(0)
