@@ -131,7 +131,6 @@ def automatic_downloader(mode):
 							try:print canal["strChannel"].lower(),channel.lower()
 							except: pass
 							ratio = int(difflib.SequenceMatcher(None, canal["strChannel"].lower(),channel.lower()).ratio()*100)
-							print ratio
 							seqmatch[ratio] = canal
 						
 						already = False

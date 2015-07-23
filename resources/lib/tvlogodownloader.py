@@ -21,6 +21,7 @@ import logowindow
 import downloader
 import automaticd
 import postprocessing
+import context
 
 def main_menu(select=False,choose=''):
 	print "[Tvlogo Downloader] Main menu"
@@ -80,27 +81,7 @@ def main_menu(select=False,choose=''):
 						if channel_list:
 							choose = xbmcgui.Dialog().select('TVLogo Downloader - Channel List',channel_labels)
 							if choose > -1:
-								channels = thelogodb.Channels().by_keyword(urllib.quote_plus(channel_labels[choose].encode('utf-8')))
-								if channels:
-									for channel in channels:
-										#TODO check for other icons
-										if not channel["strLogoWide"]:
-											channels.remove(channel)
-								if channels:
-									if len(channels) == 1:
-										#check if there is only one channel and if is an exact match
-										if channels[0]["strChannel"].lower() == channel_labels[choose].lower():
-											#TODO check for setting white or black logo or allow selection
-											logos_to_download = [channel_to_downloaddict(channels[0],channel_labels[choose])]
-											downloader.Downloader(logos_to_download,True)
-											postprocessing.run()
-										else:
-											logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
-									else:
-										logowindow.start(channels,"False","True",selected_channel=channel_labels[choose])
-										postprocessing.run()
-								else:
-									mensagemok('TVLogo Downloader','No channels match on thelogodb!')
+								context.run(channel_labels[choose])
 							else:
 								main_menu()
 						else:

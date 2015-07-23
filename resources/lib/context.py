@@ -101,5 +101,6 @@ def run(channel_name):
 			downloader.Downloader(logos_to_download,True,'')
 			postprocessing.run()
 			postprocessing.refresh(True)
+	return
 		
 
