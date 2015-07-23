@@ -1,5 +1,9 @@
 TODO LIST:
 
--> Search for non-hd logos (+setting) if ' HD' in channel name (wip - missing automatic & specific)
+-> Search for non-hd logos (+setting) if ' HD' in channel name (wip - missing specific)
 
--> Search for nonascii(channel_name) if no match is found - by default (wip - missing automatic & specific)
+-> Search for nonascii(channel_name) if no match is found - by default (wip - missing specific)
+
+-> Option to add ignore strings
+
+-> Fix bug with ascii characters making channels with logos to be reported without logos

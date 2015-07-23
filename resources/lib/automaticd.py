@@ -23,6 +23,7 @@ import downloader
 import tvlogodownloader
 import postprocessing
 from addoncommon.common_variables import *
+from addoncommon.tvldutils import *
 
 def automatic_downloader(mode):
 	dp = xbmcgui.DialogProgress()
@@ -92,12 +93,31 @@ def automatic_downloader(mode):
 			if not dp.iscanceled():
 				match = thelogodb.Channels().by_keyword(urllib.quote_plus(channel.encode('utf-8')))
 				if match:
-					match2 = []
-					for ch in match:
-						if ch['strLogoWide']: match2.append(ch)
-					match = match2
-					del match2
+					match = return_only_valid(match)
+					if not match:
+						match = tvlogodownloader.get_nonhd_match(channel.encode('utf-8'))
+						match = return_only_valid(match)
+						if not match:
+							#check if nonascii version exists
+							match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(channel)))
+							match = return_only_valid(match)
+							#if no match check if channel is HD and grab logos for nonhd
+							if not match:
+								match = tvlogodownloader.get_nonhd_match(removeNonAscii(channel))
+								match = return_only_valid(match)
 				else:
+					match = tvlogodownloader.get_nonhd_match(channel.encode('utf-8'))
+					match = return_only_valid(match)
+					if not match:
+						#check if nonascii version exists
+						match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(channel)))
+						match = return_only_valid(match)
+						#if no match check if channel is HD and grab logos for nonhd
+						if not match:
+							match = tvlogodownloader.get_nonhd_match(removeNonAscii(channel))
+							match = return_only_valid(match)
+				
+				if not match:
 					if channel not in failed_log:
 						failed_log.append(channel)
 				if match:
@@ -108,7 +128,10 @@ def automatic_downloader(mode):
 						#manipulations
 						seqmatch = {}
 						for canal in match:
+							try:print canal["strChannel"].lower(),channel.lower()
+							except: pass
 							ratio = int(difflib.SequenceMatcher(None, canal["strChannel"].lower(),channel.lower()).ratio()*100)
+							print ratio
 							seqmatch[ratio] = canal
 						
 						already = False
