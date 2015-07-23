@@ -2,6 +2,7 @@
 <settings>
 	<category label="General">
 		<setting id="logo-folder" type="folder" label="Download Folder" default=""/>
+		<setting id="hide_log" type="bool" label="Hide log notification" default="false"/>
 	</category>
 	<category label="Automatic">
 		<setting id="auto_if_100" type="bool" label="Download automatically if name matches 100%" default="true"/>

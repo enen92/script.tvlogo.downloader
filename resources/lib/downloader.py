@@ -49,11 +49,11 @@ class Downloader:
 			for failed in failed_log:
 				self.log=self.log + failed + '\n'
 				
-				
-		yes_no = xbmcgui.Dialog().yesno('TVLogo Downloader', '%s logos downloaded. Do you want to check the entire log?' % (str(self.total_downloaded)))
-		if yes_no:
-			window = logowindow.dialog_log('DialogTextViewer.xml',self.log)
-			window.doModal()
+		if settings.getSetting('hide_log') != 'true':		
+			yes_no = xbmcgui.Dialog().yesno('TVLogo Downloader', '%s logos downloaded. Do you want to check the entire log?' % (str(self.total_downloaded)))
+			if yes_no:
+				window = logowindow.dialog_log('DialogTextViewer.xml',self.log)
+				window.doModal()
 
 	def download(self,path,url,name):
 		if os.path.isfile(path) is True:

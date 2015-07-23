@@ -16,3 +16,5 @@ def channel_to_downloaddict(channel,rename_to=None):
 	if not rename_to: channel_dict = {'channel_name': channel["strChannel"] ,'channel_logo': channel["strLogoWide"]}
 	else: channel_dict = {'channel_name': channel["strChannel"] ,'channel_logo': channel["strLogoWide"],'selected_channel':rename_to}
 	return channel_dict
+	
+def removeNonAscii(s): return "".join(filter(lambda x: ord(x)<128, s))

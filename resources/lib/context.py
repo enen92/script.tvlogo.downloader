@@ -40,7 +40,6 @@ def run(channel_name):
 				if search_parameter:
 					channel = search_parameter
 					del search_parameter
-		#magic
 		match = thelogodb.Channels().by_keyword(channel)
 		if match:
 			match2 = []
