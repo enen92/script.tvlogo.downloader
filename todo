@@ -1,5 +1,5 @@
 TODO LIST:
 
--> Search for non-hd logos (+setting) if ' HD' in channel name
+-> Search for non-hd logos (+setting) if ' HD' in channel name (wip - missing automatic & specific)
 
--> Search for nonascii(channel_name) if no match is found - by default
+-> Search for nonascii(channel_name) if no match is found - by default (wip - missing automatic & specific)

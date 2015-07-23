@@ -326,3 +326,11 @@ def entire_packages():
 	else:
 		main_menu()
 	
+def get_nonhd_match(channel):
+	#check if non-hd logo is available if no match is found
+	if settings.getSetting('search_nonhd') == 'true' and ' hd' in urllib.unquote_plus(channel).lower():
+		newchannel = urllib.quote_plus(urllib.unquote_plus(channel.lower().replace(' hd','')))
+		match = thelogodb.Channels().by_keyword(newchannel)
+		return match
+	else:
+		return []

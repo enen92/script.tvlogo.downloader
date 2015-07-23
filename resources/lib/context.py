@@ -20,11 +20,12 @@ import thelogodb
 import downloader
 import logowindow
 import postprocessing
+import tvlogodownloader
 from addoncommon.common_variables import *
+from addoncommon.tvldutils import *
 
 def run(channel_name):
 	channel_name = urllib.unquote(channel_name)
-	error = False
 	menu_labels = ['Exact channel name','Custom channel name']
 	menu_functions = ['auto','custom']
 	initconst = const.Constr().restart_process()
@@ -40,16 +41,33 @@ def run(channel_name):
 				if search_parameter:
 					channel = search_parameter
 					del search_parameter
+		
 		match = thelogodb.Channels().by_keyword(channel)
 		if match:
-			match2 = []
-			for ch in match:
-				if ch['strLogoWide']: match2.append(ch)
-			match = match2
-			del match2
+			match = return_only_valid(match)
+			if not match:
+				match = tvlogodownloader.get_nonhd_match(channel)
+				match = return_only_valid(match)
+				if not match:
+					#check if nonascii version exists
+					match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(channel_name)))
+					match = return_only_valid(match)
+					#if no match check if channel is HD and grab logos for nonhd
+					if not match:
+						match = tvlogodownloader.get_nonhd_match(removeNonAscii(channel_name))
+						match = return_only_valid(match)
 		else:
-			error = True
-			mensagemok('TVLogo Downloader','No channels match on the db. Try to use a custom search.')
+			match = tvlogodownloader.get_nonhd_match(channel)
+			match = return_only_valid(match)
+			if not match:
+				#check if nonascii version exists
+				match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(channel_name)))
+				match = return_only_valid(match)
+				#if no match check if channel is HD and grab logos for nonhd
+				if not match:
+					match = tvlogodownloader.get_nonhd_match(removeNonAscii(channel_name))
+					match = return_only_valid(match)
+
 		if match:
 			if len(match) == 1:
 				obj = {'channel_name': match[0]["strChannel"],'channel_logo': match[0]["strLogoWide"],'selected_channel':channel_name}
@@ -76,8 +94,7 @@ def run(channel_name):
 						
 				if not already:
 					logowindow.start(match,"False","False",selected_channel=channel_name)
-		else: 
-			if not error: mensagemok('TVLogo Downloader','No channels match on the db. Try to use a custom search.')
+		else: mensagemok('TVLogo Downloader','No channels match on the db. Try to use a custom search.')
 		#download
 		logos_to_download = const.Constr().return_array()
 		if logos_to_download:

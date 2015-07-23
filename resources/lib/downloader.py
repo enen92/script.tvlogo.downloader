@@ -69,7 +69,8 @@ class Downloader:
 		try: 
 			urllib.urlretrieve(url, path, lambda nb, bs, fs: self.dialogdown(name,nb, bs, fs, dp, start_time))
 			dp.close()
-			self.log=self.log+'[B]'+name+'[/B] : '+path+'\n'
+			try: self.log=self.log+'[B]'+name+'[/B] : '+path+'\n'
+			except: self.log=self.log+'[B]'+removeNonAscii(name)+'[/B] : '+removeNonAscii(path)+'\n'
 			self.total_downloaded += 1
 			return True
 		except:

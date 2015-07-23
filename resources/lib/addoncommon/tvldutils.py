@@ -18,3 +18,15 @@ def channel_to_downloaddict(channel,rename_to=None):
 	return channel_dict
 	
 def removeNonAscii(s): return "".join(filter(lambda x: ord(x)<128, s))
+
+def return_only_valid(match):
+	match2 = []
+	if match:
+		for ch in match:
+			if ch['strLogoWide']: match2.append(ch)
+		match = match2
+		del match2
+		return match
+	else: return []
+	
+
