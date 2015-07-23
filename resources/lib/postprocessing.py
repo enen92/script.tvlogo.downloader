@@ -38,11 +38,17 @@ def run():
 				mensagemok('TVLogo Downloader','Could not set the folder! Aborting')
 				sys.exit(0)
 		#check kodi version and trigger missing logos update
-		versionNumber = int(xbmc.getInfoLabel("System.BuildVersion" )[0:2])
-		#TODO drop older methods after Jarvis is stable
-		if versionNumber >= 16:
-			xbmc.executebuiltin('PVR.SearchMissingChannelIcons')
-		else:
-			xbmc.executebuiltin('StartPVRManager')
-		mensagemok('TVLogo Downloader','All done!')
+		refresh(False)
 	return
+
+def refresh(condition):
+	versionNumber = int(xbmc.getInfoLabel("System.BuildVersion" )[0:2])
+	#TODO drop older methods after Jarvis is stable
+	if versionNumber >= 16:
+		xbmc.executebuiltin('PVR.SearchMissingChannelIcons')
+	else:
+		xbmc.executebuiltin('StartPVRManager')
+	if condition:
+		xbmc.sleep(1000)
+		xbmc.executebuiltin('Container.Refresh')
+	
