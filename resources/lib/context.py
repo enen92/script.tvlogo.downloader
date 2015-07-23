@@ -76,18 +76,18 @@ def run(channel_name):
 				#manipulations
 				seqmatch = {}
 				for canal in match:
-					ratio = int(difflib.SequenceMatcher(None, canal["strChannel"].lower(),channel.lower()).ratio()*100)
+					ratio = int(difflib.SequenceMatcher(None, canal["strChannel"].lower(),urllib.unquote_plus(channel).lower()).ratio()*100)
 					seqmatch[ratio] = canal
 						
 				already = False
-						
+									
 				if settings.getSetting('auto_if_100') == 'true':
 					if max(seqmatch.keys()) == 100: 
 						already = True
 						obj = {'channel_name': seqmatch[max(seqmatch.keys())]["strChannel"],'channel_logo': seqmatch[max(seqmatch.keys())]["strLogoWide"],'selected_channel':channel_name}
 						const.Constr().add_to_array(obj)
 				if settings.getSetting('auto_if_multiple') == 'true' and not already:
-					if max(seqmatch.keys()) >= int(settings.getSetting()):
+					if max(seqmatch.keys()) >= int(settings.getSetting("minimum_ratio")):
 						already = True
 						obj = {'channel_name': seqmatch[max(seqmatch.keys())]["strChannel"],'channel_logo': seqmatch[max(seqmatch.keys())]["strLogoWide"],'selected_channel':channel_name}
 						const.Constr().add_to_array(obj)

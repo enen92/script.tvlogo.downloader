@@ -119,7 +119,7 @@ def automatic_downloader(mode):
 								obj = {'channel_name': seqmatch[max(seqmatch.keys())]["strChannel"],'channel_logo': seqmatch[max(seqmatch.keys())]["strLogoWide"],'selected_channel':channel}
 								const.Constr().add_to_array(obj)
 						if settings.getSetting('auto_if_multiple') == 'true' and not already:
-							if max(seqmatch.keys()) >= int(settings.getSetting()):
+							if max(seqmatch.keys()) >= int(settings.getSetting("minimum_ratio")):
 								already = True
 								obj = {'channel_name': seqmatch[max(seqmatch.keys())]["strChannel"],'channel_logo': seqmatch[max(seqmatch.keys())]["strLogoWide"],'selected_channel':channel}
 								const.Constr().add_to_array(obj)
