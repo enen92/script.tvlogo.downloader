@@ -23,10 +23,14 @@ You can also define a set of words to be ignored/replaced from your channel name
 
 Showcase
 ----------
+https://www.youtube.com/watch?v=mP4F2T7P-3o&feature=youtu.be
+
+[![TheLogoDownloader showcase](http://s14.postimg.org/3q6k1jlch/thelogooooo.png)](https://www.youtube.com/watch?v=mP4F2T7P-3o&feature=youtu.be)
 
 Download
 ----------
-Releases Tab
+script.tvlogo.downloader:
+context.tvlogo.downloader:
 
 License
 ----------
