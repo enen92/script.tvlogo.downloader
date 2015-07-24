@@ -12,6 +12,7 @@
 # You should have received a copy of the GNU General Public License along with this program; 
 # if not, see <http://www.gnu.org/licenses/>.
 
+import urllib2
 from common_variables import *
 
 def channel_to_downloaddict(channel,rename_to=None):
@@ -38,4 +39,9 @@ def get_replaced_names(channel):
 			channel=channel.replace(keyword,'')
 	return channel
 	
+
+def get_page_source(url):
+	try: source = urllib2.urlopen(url)
+	except: source = '{ channels = {},packages= {} }'
+	return source
 

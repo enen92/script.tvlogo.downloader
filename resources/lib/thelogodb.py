@@ -13,6 +13,7 @@
 # if not, see <http://www.gnu.org/licenses/>.
 
 import json,urllib,urllib2
+from addoncommon.tvldutils import *
 
 API_BASE_URL = 'http://www.thelogodb.com/api/json/v1'
 API_KEY = '7361'
@@ -24,27 +25,27 @@ class Channels:
 	
 	def by_keyword(self,channel):
 		url = '%s/%s/tvchannel.php?s=%s' % (API_BASE_URL,self.API_KEY,str(channel))
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["channels"]
 		
 	def by_country(self,country):
 		url = '%s/%s/tvchannel.php?c=%s' % (API_BASE_URL,self.API_KEY,str(country))
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["channels"]
 		
 	def by_id(self,_id):
 		url = '%s/%s/tvchannel.php?id=%s' % (API_BASE_URL,self.API_KEY,str(_id))
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["channels"]
 		
 	def by_package(self,package_id):
 		url = '%s/%s/tvchannel.php?p=%s' % (API_BASE_URL,self.API_KEY,str(package_id))
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["channels"]
 		
 	def get_countries(self,):
 		url = '%s/%s/tvchannelcountries.php' % (API_BASE_URL,self.API_KEY)
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["channels"]
 		
 		
@@ -55,22 +56,22 @@ class Packages:
 		
 	def by_keyword(self,package):
 		url = '%s/%s/tvpackage.php?s=%s' % (API_BASE_URL,self.API_KEY,str(package))
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["packages"]
 		
 	def by_country(self,country):
 		url = '%s/%s/tvpackage.php?c=%s' % (API_BASE_URL,self.API_KEY,str(country))
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["packages"]
 		
 	def by_id(self,package_id):
 		url = '%s/%s/tvpackage.php?id=%s' % (API_BASE_URL,self.API_KEY,str(package_id))
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["packages"]
 		
 	def get_all(self,):
 		url = '%s/%s/tvpackage.php?c=%s' % (API_BASE_URL,self.API_KEY,'all')
-		data = json.load(urllib2.urlopen(url))
+		data = json.load(get_page_source(url))
 		return data["packages"]
 	
 
