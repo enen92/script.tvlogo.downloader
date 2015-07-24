@@ -29,9 +29,9 @@ https://www.youtube.com/watch?v=mP4F2T7P-3o&feature=youtu.be
 
 Download
 ----------
-script.tvlogo.downloader:
+script.tvlogo.downloader: [Beta version!](https://github.com/enen92/script.tvlogo.downloader/releases/tag/untagged-b47513e54d2e83485665)
 
-context.tvlogo.downloader:
+context.tvlogo.downloader: [Beta version!](https://www.github.com)
 
 License
 ----------
