@@ -98,30 +98,30 @@ def automatic_downloader(mode):
 		for channel in ch_names:
 			dp.update(int(i/float(totalchannels)),'Processing channel '+channel)
 			if not dp.iscanceled():
-				match = thelogodb.Channels().by_keyword(urllib.quote_plus(channel.encode('utf-8')))
+				match = thelogodb.Channels().by_keyword(urllib.quote_plus(get_replaced_names(channel.encode('utf-8'))))
 				if match:
 					match = return_only_valid(match)
 					if not match:
-						match = tvlogodownloader.get_nonhd_match(channel.encode('utf-8'))
+						match = tvlogodownloader.get_nonhd_match(get_replaced_names(channel.encode('utf-8')))
 						match = return_only_valid(match)
 						if not match:
 							#check if nonascii version exists
-							match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(channel)))
+							match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(get_replaced_names(channel))))
 							match = return_only_valid(match)
 							#if no match check if channel is HD and grab logos for nonhd
 							if not match:
-								match = tvlogodownloader.get_nonhd_match(removeNonAscii(channel))
+								match = tvlogodownloader.get_nonhd_match(removeNonAscii(get_replaced_names(channel)))
 								match = return_only_valid(match)
 				else:
-					match = tvlogodownloader.get_nonhd_match(channel.encode('utf-8'))
+					match = tvlogodownloader.get_nonhd_match(get_replaced_names(channel.encode('utf-8')))
 					match = return_only_valid(match)
 					if not match:
 						#check if nonascii version exists
-						match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(channel)))
+						match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(get_replaced_names(channel))))
 						match = return_only_valid(match)
 						#if no match check if channel is HD and grab logos for nonhd
 						if not match:
-							match = tvlogodownloader.get_nonhd_match(removeNonAscii(channel))
+							match = tvlogodownloader.get_nonhd_match(removeNonAscii(get_replaced_names(channel)))
 							match = return_only_valid(match)
 				
 				if not match:

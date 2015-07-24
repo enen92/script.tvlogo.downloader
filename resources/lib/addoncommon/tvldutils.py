@@ -12,6 +12,8 @@
 # You should have received a copy of the GNU General Public License along with this program; 
 # if not, see <http://www.gnu.org/licenses/>.
 
+from common_variables import *
+
 def channel_to_downloaddict(channel,rename_to=None):
 	if not rename_to: channel_dict = {'channel_name': channel["strChannel"] ,'channel_logo': channel["strLogoWide"]}
 	else: channel_dict = {'channel_name': channel["strChannel"] ,'channel_logo': channel["strLogoWide"],'selected_channel':rename_to}
@@ -28,5 +30,12 @@ def return_only_valid(match):
 		del match2
 		return match
 	else: return []
+	
+def get_replaced_names(channel):
+	keywords = settings.getSetting("ignore_words").split(',')
+	if keywords:
+		for keyword in keywords:
+			channel=channel.replace(keyword,'')
+	return channel
 	
 

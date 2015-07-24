@@ -4,6 +4,7 @@
 		<setting id="logo-folder" type="folder" label="Download Folder" default=""/>
 		<setting id="hide_log" type="bool" label="Hide log notification" default="false"/>
 		<setting id="search_nonhd" type="bool" label="Search for non-hd logos if hd not available" default="true"/>
+		<setting id="ignore_words" type="text" label="List of comma separated words to be ignored" default="" visible="true" />
 	</category>
 	<category label="Automatic">
 		<setting id="auto_if_100" type="bool" label="Download automatically if name matches 100%" default="true"/>

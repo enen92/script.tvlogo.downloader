@@ -32,12 +32,12 @@ def run(channel_name):
 	choose = xbmcgui.Dialog().select('TVLogo Downloader',menu_labels)
 	if choose > -1:
 		if menu_functions[choose] == 'auto':
-			channel = urllib.quote_plus(channel_name)
+			channel = urllib.quote_plus(get_replaced_names(channel_name))
 		elif menu_functions[choose] == 'custom':
 			keyb = xbmc.Keyboard('', 'Enter channel')
 			keyb.doModal()
 			if (keyb.isConfirmed()):
-				search_parameter = urllib.quote_plus(keyb.getText())
+				search_parameter = urllib.quote_plus(get_replaced_names(keyb.getText()))
 				if search_parameter:
 					channel = search_parameter
 					del search_parameter
