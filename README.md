@@ -16,7 +16,8 @@ Features
 
 How does it work
 ----------
-TVLogo Downloader automatically sets the channel icons folder to the same folder the user defines in the addon settings. It tries to match each channel with the channels (that have logos) on the database. If a match is found, the logo is downloaded and the pvr is "refreshed" so the logos can be shown. In Kodi 16+ this is achieved by triggering `PVR.SearchMissingChannelIcons`. In Kodi versions lower than v16, the pvr manager is restarted.
+TVLogo Downloader automatically sets the channel icons folder to the same folder the user defines in the addon settings. It tries to match each channel with the channels (that have logos) on the database. If a match is found, the logo is downloaded and the pvr is "refreshed" so the logos can be shown.
+In Kodi 16+ this is achieved by triggering `PVR.SearchMissingChannelIcons`. In Kodi versions lower than v16, the pvr manager is restarted.
 To improve the precision of the match the addon checks also if the channel is HD and a logo for the corresponding non-HD channel exists on the database and it checks also for the name of the channel after removing ascii characters. You can define a minimum similarity ratio to assume the channels match. Be aware that using low values for this ratio can cause certain channels to have a bad match, specially those that only differ on a single letter or number.
 You can also define a set of words to be ignored/replaced from your channel names.
 
@@ -34,4 +35,5 @@ GPL V2
 Donate
 ----------
 Thelogodb has costs. To assure the future of the site please donate to thelogodb.com:
+
 ![https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ZYFYNBF3WFS94](http://www.thelogodb.com/images/icons/paypal.png)
