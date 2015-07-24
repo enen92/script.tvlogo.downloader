@@ -17,6 +17,7 @@ from addoncommon.tvldutils import *
 import thelogodb
 import urllib
 import json
+import sys
 import logowindow
 import downloader
 import automaticd
@@ -40,7 +41,10 @@ def main_menu(select=False,choose=''):
 			decoded_data = json.loads(json_response)
 			groupids = []
 			grouplabels = []
-			groups = decoded_data['result']['channelgroups']
+			try: groups = decoded_data['result']['channelgroups']
+			except:
+				mensagemok('TVLogo Downloader','Live TV is not enabled in kodi or no channels are available.')
+				sys.exit(0)
 			for x in range(0, len(decoded_data['result']['channelgroups'])):
 				#check if group has channels
 				has_channels = False

@@ -14,6 +14,8 @@
 
 import xbmc
 import json
+import os
+import sys
 import urllib
 import thelogodb
 import logowindow
@@ -39,7 +41,11 @@ def automatic_downloader(mode):
 	
 	json_response = xbmc.executeJSONRPC('{"jsonrpc": "2.0", "method": "PVR.GetChannelGroups", "params": {"channeltype" : "tv"}, "id": 1 }')
 	decoded_data = json.loads(json_response)
-	groups = decoded_data['result']['channelgroups']
+	try: 
+		groups = decoded_data['result']['channelgroups']
+	except:
+		mensagemok('TVLogo Downloader','Live TV is not enabled in kodi or no channels are available.')
+		sys.exit(0)
 	for x in range(0, len(decoded_data['result']['channelgroups'])):
 		has_channels = False
 		if groups[x]["channelgroupid"] > -1:
