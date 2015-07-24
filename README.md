@@ -36,6 +36,6 @@ Donate
 ----------
 Thelogodb has costs. To assure the future of the site please donate to thelogodb.com:
 
-[![screenshot1](http://t.imgbox.com/DtEF1B3b)](http://i.imgbox.com/DtEF1B3b.png)
+[![screenshot1](http://t.imgbox.com/DtEF1B3b)](http://www.thelogodb.com/images/icons/paypal.png)
 
 
