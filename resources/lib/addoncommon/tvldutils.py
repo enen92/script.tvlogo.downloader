@@ -14,7 +14,6 @@
 
 import urllib2
 import os
-import PIL
 from PIL import Image
 from common_variables import *
 
