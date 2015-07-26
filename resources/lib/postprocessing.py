@@ -31,8 +31,8 @@ def run():
 		json_response = xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.GetSettingValue","params":{"setting":"pvrmenu.iconpath"},"id":9}')
 		decoded_data = json.loads(json_response)
 		kodi_logo_folder = decoded_data['result']['value']
-		if addon_logo_folder != kodi_logo_folder:
-			json_response = xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue","params":{"setting":"pvrmenu.iconpath","value":"'+addon_logo_folder+'"},"id":19}')
+		if addon_logo_folder.replace('\\','\\\\') != kodi_logo_folder:
+			json_response = xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"Settings.SetSettingValue","params":{"setting":"pvrmenu.iconpath","value":"'+addon_logo_folder.replace('\\','\\\\')+'"},"id":19}')
 			decoded_data = json.loads(json_response)
 			if decoded_data["result"] != True:
 				mensagemok('TVLogo Downloader','Could not set the folder! Aborting')
