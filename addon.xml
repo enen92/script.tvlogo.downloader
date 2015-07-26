@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="script.tvlogo.downloader" version="0.0.6" name="TVLogo Downloader" provider-name="enen92">
+<addon id="script.tvlogo.downloader" version="0.0.7" name="TVLogo Downloader" provider-name="enen92">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.pil" />"
   </requires>
   <extension point="xbmc.python.script" library="default.py">
     <provides>executable</provides>

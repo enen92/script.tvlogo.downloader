@@ -12,4 +12,8 @@
 		<setting id="minimum_ratio" label="Mininum ratio to consider a logo for download" type="slider" default="95" range="50,100" option="int" visible="eq(-1,true)"/>
 		<setting id="display_warning" type="bool" label="display warning hidden setting" default="true" visible="False"/>
 	</category>
+	<category label="Post-Processing">
+		<setting id="resize_logos" type="bool" label="Resize logos after downloading (original logos are 800x450px" default="false"/>
+		<setting id="resize_ratio" label="Percentage of the original for resize" type="slider" default="100" range="20,10,100" option="int" enable="eq(-1,true)"/>
+	</category>
 </settings>

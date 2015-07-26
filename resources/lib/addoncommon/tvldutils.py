@@ -13,6 +13,9 @@
 # if not, see <http://www.gnu.org/licenses/>.
 
 import urllib2
+import os
+import PIL
+from PIL import Image
 from common_variables import *
 
 def channel_to_downloaddict(channel,rename_to=None):
@@ -44,4 +47,21 @@ def get_page_source(url):
 	try: source = urllib2.urlopen(url)
 	except: source = '{ channels = {},packages= {} }'
 	return source
+	
+def resize(localfile):
+	if settings.getSetting('resize_logos') == 'true' and int(settings.getSetting('resize_ratio')):
+		#resize
+		if os.path.exists(localfile):
+			img = Image.open(localfile)
+			percent = int(settings.getSetting('resize_ratio'))
+			w,h = img.size
+			img.thumbnail(((percent*w)/100,(percent*h)/100))
+			img.save(localfile)
+			print "Image " + localfile + " resized!"
+			return True	
+		else:
+			print "File " + localfile +" does not exist. It will not be resized"
+			return False
+	else:
+		return False
 
