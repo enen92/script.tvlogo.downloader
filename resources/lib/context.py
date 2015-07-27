@@ -57,7 +57,7 @@ def run(channel_name):
 						match = tvlogodownloader.get_nonhd_match(removeNonAscii(urllib.unquote_plus(channel)))
 						match = return_only_valid(match)
 		else:
-			match = tvlogodownloader.get_nonhd_match(urllib.unquote_plus(urllib.unquote_plus(channel)))
+			match = tvlogodownloader.get_nonhd_match(urllib.unquote_plus(channel))
 			match = return_only_valid(match)
 			if not match:
 				#check if nonascii version exists

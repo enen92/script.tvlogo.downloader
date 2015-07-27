@@ -43,7 +43,8 @@ class Downloader:
 				localfile = os.path.join(self.logo_folder,channel_name+'.png')
 				self.download(localfile,channel_url,channel_name)
 		
-		res = resize(localfile)
+		try:res = resize(localfile)
+		except:pass
 				
 		#Append failed log
 		if failed_log:
