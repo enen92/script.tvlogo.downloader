@@ -59,10 +59,11 @@ class Downloader:
 				window.doModal()
 
 	def download(self,path,url,name):
-		if os.path.isfile(path) is True:
-			while os.path.exists(path): 
-				try: os.remove(path); break 
-				except: pass
+		try:
+			if os.path.isfile(path) is True:
+				while os.path.exists(path): 
+					os.remove(path); break
+		except: pass
 				  
 		dp = xbmcgui.DialogProgress()
 		dp.create('TVLogo Downloader')
@@ -77,9 +78,10 @@ class Downloader:
 			self.total_downloaded += 1
 			return True
 		except:
-			while os.path.exists(path): 
-				try: os.remove(path); break 
-				except: pass
+			try:
+				while os.path.exists(path): 
+					os.remove(path); break
+			except: pass
 			dp.close()
 			return False
 			
