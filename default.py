@@ -50,7 +50,7 @@ if not params:
 
 else:
 	if params[0] == 'context':
-		context.run(params[1])
+		context.run('/'.join(params[1:]))
 
 try: xbmcplugin.endOfDirectory(int(sys.argv[1]))
 except: sys.exit(0)

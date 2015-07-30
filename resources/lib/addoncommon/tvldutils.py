@@ -14,6 +14,7 @@
 
 import urllib2
 import os
+import re
 from PIL import Image
 from common_variables import *
 
@@ -39,6 +40,8 @@ def get_replaced_names(channel):
 	if keywords:
 		for keyword in keywords:
 			channel=channel.replace(keyword,'')
+			resub = keyword.replace('[','\[').replace(']','\]')
+			channel = re.sub(resub,'',channel)
 	return channel
 	
 

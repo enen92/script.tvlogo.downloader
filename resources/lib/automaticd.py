@@ -102,6 +102,25 @@ def automatic_downloader(mode):
 				if match:
 					match = return_only_valid(match)
 					if not match:
+						if ' hq' in channel.encode('utf-8').lower():
+							match = tvlogodownloader.get_nonhd_match(get_replaced_names(channel.encode('utf-8').lower().replace('hq',' hd')))
+							match = return_only_valid(match)
+						if not match:
+							match = tvlogodownloader.get_nonhd_match(get_replaced_names(channel.encode('utf-8')))
+							match = return_only_valid(match)
+							if not match:
+								#check if nonascii version exists
+								match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(get_replaced_names(channel))))
+								match = return_only_valid(match)
+								#if no match check if channel is HD and grab logos for nonhd
+								if not match:
+									match = tvlogodownloader.get_nonhd_match(removeNonAscii(get_replaced_names(channel)))
+									match = return_only_valid(match)
+				else:
+					if ' hq' in channel.encode('utf-8').lower():
+						match = tvlogodownloader.get_nonhd_match(get_replaced_names(channel.encode('utf-8').lower().replace('hq',' hd')))
+						match = return_only_valid(match)
+					if not match:
 						match = tvlogodownloader.get_nonhd_match(get_replaced_names(channel.encode('utf-8')))
 						match = return_only_valid(match)
 						if not match:
@@ -112,17 +131,6 @@ def automatic_downloader(mode):
 							if not match:
 								match = tvlogodownloader.get_nonhd_match(removeNonAscii(get_replaced_names(channel)))
 								match = return_only_valid(match)
-				else:
-					match = tvlogodownloader.get_nonhd_match(get_replaced_names(channel.encode('utf-8')))
-					match = return_only_valid(match)
-					if not match:
-						#check if nonascii version exists
-						match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(get_replaced_names(channel))))
-						match = return_only_valid(match)
-						#if no match check if channel is HD and grab logos for nonhd
-						if not match:
-							match = tvlogodownloader.get_nonhd_match(removeNonAscii(get_replaced_names(channel)))
-							match = return_only_valid(match)
 				
 				if not match:
 					if channel not in failed_log:

@@ -46,6 +46,27 @@ def run(channel_name):
 		if match:
 			match = return_only_valid(match)
 			if not match:
+				#check if HQ exists and replace it by HD
+				if '+hq' in channel.lower():
+					match = thelogodb.Channels().by_keyword(channel.lower().replace('+hq','+hd'))
+					match = return_only_valid(match)
+				if not match:
+					match = tvlogodownloader.get_nonhd_match(urllib.unquote_plus(channel))
+					match = return_only_valid(match)
+					if not match:
+						#check if nonascii version exists
+						match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(urllib.unquote_plus(channel))))
+						match = return_only_valid(match)
+						#if no match check if channel is HD and grab logos for nonhd
+						if not match:
+							match = tvlogodownloader.get_nonhd_match(removeNonAscii(urllib.unquote_plus(channel)))
+							match = return_only_valid(match)
+		else:
+			#check if HQ exists and replace it by HD
+			if '+hq' in channel.lower():
+				match = thelogodb.Channels().by_keyword(channel.lower().replace('+hq','+hd'))
+				match = return_only_valid(match)
+			if not match:
 				match = tvlogodownloader.get_nonhd_match(urllib.unquote_plus(channel))
 				match = return_only_valid(match)
 				if not match:
@@ -56,17 +77,6 @@ def run(channel_name):
 					if not match:
 						match = tvlogodownloader.get_nonhd_match(removeNonAscii(urllib.unquote_plus(channel)))
 						match = return_only_valid(match)
-		else:
-			match = tvlogodownloader.get_nonhd_match(urllib.unquote_plus(channel))
-			match = return_only_valid(match)
-			if not match:
-				#check if nonascii version exists
-				match = thelogodb.Channels().by_keyword(urllib.quote_plus(removeNonAscii(urllib.unquote_plus(channel))))
-				match = return_only_valid(match)
-				#if no match check if channel is HD and grab logos for nonhd
-				if not match:
-					match = tvlogodownloader.get_nonhd_match(removeNonAscii(urllib.unquote_plus(channel)))
-					match = return_only_valid(match)
 
 		if match:
 			if len(match) == 1:
