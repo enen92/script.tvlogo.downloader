@@ -29,7 +29,7 @@ https://www.youtube.com/watch?v=mP4F2T7P-3o&feature=youtu.be
 
 Download
 ----------
-script.tvlogo.downloader: [Beta version!](https://github.com/enen92/script.tvlogo.downloader/releases/tag/0.0.6-beta)
+script.tvlogo.downloader: [Beta version!](https://github.com/enen92/script.tvlogo.downloader/releases/tag/0.0.11beta)
 
 context.tvlogo.downloader: [Beta version!](https://github.com/enen92/context.tvlogo.downloader/releases/tag/0.0.5-beta)
 
