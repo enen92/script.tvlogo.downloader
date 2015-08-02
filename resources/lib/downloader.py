@@ -36,15 +36,16 @@ class Downloader:
 				channel_selected = channel['selected_channel']
 				localfile = os.path.join(self.logo_folder,channel_selected.replace('/','_')+'.png')
 				self.download(localfile,channel_url,channel_name)
+				try:res = resize(localfile)
+				except:pass
 		else:
 			for channel in self.dictionary:
 				channel_url = channel['channel_logo']
 				channel_name = channel['channel_name']
 				localfile = os.path.join(self.logo_folder,channel_name.replace('/','_')+'.png')
 				self.download(localfile,channel_url,channel_name)
-		
-		try:res = resize(localfile)
-		except:pass
+				try:res = resize(localfile)
+				except:pass
 				
 		#Append failed log
 		if failed_log:
