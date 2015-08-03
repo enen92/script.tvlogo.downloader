@@ -110,7 +110,6 @@ def run(channel_name):
 		if logos_to_download:
 			downloader.Downloader(logos_to_download,True,'')
 			postprocessing.run()
-			#postprocessing.refresh(True)
 	return
 		
 
