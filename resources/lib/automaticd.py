@@ -85,7 +85,8 @@ def automatic_downloader(mode):
 						decoded_data = json.loads(json_response)
 						logo_folder = decoded_data['result']['value']
 						logofile = os.path.join(logo_folder,channel["label"].replace('/','_')+'.png')
-						if channel["label"] not in ch_names and channel['thumbnail'].replace('image://','') != (logo_folder + channel["label"].replace(' ','%20')+'.png').replace('/','%2f') + '/' and not os.path.exists(logofile): 
+#						if channel["label"] not in ch_names and channel['thumbnail'].replace('image://','') != (logo_folder + channel["label"].replace(' ','%20')+'.png').replace('/','%2f') + '/' and not os.path.exists(logofile): 
+						if channel["label"] not in ch_names and channel['thumbnail'].replace('image://','') != (logo_folder + channel["label"].replace(' ','%20')+'.png').replace('/','%2f') + '/' and not os.path.exists(logofile.encode('utf-8')): 
 							ch_ids.append(channel["channelid"])
 							ch_names.append(channel["label"])
 	if ch_names:
