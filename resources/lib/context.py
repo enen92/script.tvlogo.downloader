@@ -34,7 +34,8 @@ def run(channel_name):
 		if menu_functions[choose] == 'auto':
 			channel = urllib.quote_plus(get_replaced_names(channel_name))
 		elif menu_functions[choose] == 'custom':
-			keyb = xbmc.Keyboard('', 'Enter channel')
+			#keyb = xbmc.Keyboard('', 'Enter channel')
+			keyb = xbmc.Keyboard(channel_name, 'Enter channel')
 			keyb.doModal()
 			if (keyb.isConfirmed()):
 				search_parameter = urllib.quote_plus(get_replaced_names(keyb.getText()))
